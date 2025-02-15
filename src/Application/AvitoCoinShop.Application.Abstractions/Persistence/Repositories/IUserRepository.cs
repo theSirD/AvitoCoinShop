@@ -4,5 +4,7 @@ namespace AvitoCoinShop.Application.Abstractions.Persistence.Repositories;
 
 public interface IUserRepository
 {
-    public Task<long> AuthAsync(User user, CancellationToken cancellationToken);
+    public Task<User?> GetByUsernameAsync(string username, CancellationToken cancellationToken);
+
+    public Task<long> CreateUserAsync(User user, CancellationToken cancellationToken);
 }
