@@ -6,15 +6,14 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
+    
     <ItemGroup>
+        <ProjectReference Include="..\AvitoCoinShop.Application.Abstractions\AvitoCoinShop.Application.Abstractions.csproj" />
         <ProjectReference Include="..\AvitoCoinShop.Application.Contracts\AvitoCoinShop.Application.Contracts.csproj"/>
     </ItemGroup>
     
     <ItemGroup>
       <Folder Include="Extensions\" />
-      <Folder Include="Merch\" />
-      <Folder Include="Transactions\" />
     </ItemGroup>
 
 </Project>
