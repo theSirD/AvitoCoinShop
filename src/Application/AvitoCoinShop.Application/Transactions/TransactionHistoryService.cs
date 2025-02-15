@@ -37,10 +37,10 @@ public class TransactionHistoryService : ITransactionHistoryService
         var purchaseHistory = 
             await _transactionHistoryRepository.GetPurchaseHistoryAsync(userId, cancellationToken);
         
-        var transactionHistorySummary = new TransactionHistorySummary();
-        transactionHistorySummary.IncomingTransfers = incomingTransfers;
-        transactionHistorySummary.OutgoingTransfers = outgoingTransfers;
-        transactionHistorySummary.Purchases = purchaseHistory;
+        var transactionHistorySummary = new TransactionHistorySummary(
+            incomingTransfers,
+            outgoingTransfers,
+            purchaseHistory);
 
         return transactionHistorySummary;
     }
