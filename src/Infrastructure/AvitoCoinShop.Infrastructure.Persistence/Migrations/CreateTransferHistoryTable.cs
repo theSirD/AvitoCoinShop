@@ -22,6 +22,6 @@ public class CreateTransferHistoryTable : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP TABLE transfers;");
+        Execute.Sql("DROP TABLE transfer_history;");
     }
 }

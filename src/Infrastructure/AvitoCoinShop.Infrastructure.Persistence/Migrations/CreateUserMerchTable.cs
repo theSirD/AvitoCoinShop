@@ -11,7 +11,7 @@ public class CreateUserMerchTable : Migration
             CREATE TABLE user_merch (
                 user_id BIGINT NOT NULL,
                 merch_id BIGINT NOT NULL,
-                purchased_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+                amount INT NOT NULL CHECK (amount > 0),
                 PRIMARY KEY (user_id, merch_id),
                 CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
                 CONSTRAINT fk_merch FOREIGN KEY (merch_id) REFERENCES merch_items(id) ON DELETE CASCADE
