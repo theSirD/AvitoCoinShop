@@ -8,6 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\Application\AvitoCoinShop.Application.Models\AvitoCoinShop.Application.Models.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
         <ProjectReference Include="..\..\Application\AvitoCoinShop.Application.Abstractions\AvitoCoinShop.Application.Abstractions.csproj"/>
     </ItemGroup>
     
@@ -17,6 +20,7 @@
 
     <ItemGroup>
       <PackageReference Include="FluentMigrator" Version="6.2.0" />
+      <PackageReference Include="Npgsql" Version="9.0.2" />
     </ItemGroup>
 
 </Project>
