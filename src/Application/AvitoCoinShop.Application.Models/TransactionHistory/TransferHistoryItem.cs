@@ -1,6 +1,6 @@
 namespace AvitoCoinShop.Application.Models.TransactionHistory;
 
-public record TransferHistoryItem
+public record TransferHistoryItem 
 (
     long? Id,
     long SenderId,
