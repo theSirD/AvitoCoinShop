@@ -17,28 +17,27 @@ public class MerchRepository : IMerchRepository
     public async Task<long> BuyMerchAsync(long userId, long merchId, long amount, CancellationToken cancellationToken)
     {
         const string sql = @"
-            INSERT INTO user_merch (user_id, merch_id, amount)
-            VALUES (:user_id, :merch_id, :amount)
-            ON CONFLICT (user_id, merch_id) 
-            DO UPDATE SET amount = user_merch.amount + :amount;
-        ";
+        INSERT INTO user_merch (user_id, merch_id, amount)
+        VALUES (:user_id, :merch_id, :amount)
+        ON CONFLICT (user_id, merch_id) 
+        DO UPDATE SET amount = user_merch.amount + :amount
+        RETURNING id;
+    ";
 
         await using NpgsqlConnection connection = await _dataSource.OpenConnectionAsync(cancellationToken);
 
-        await using DbCommand command = new NpgsqlCommand(sql, connection)
-        {
-            Parameters =
-            {
-                new NpgsqlParameter("user_id", userId),
-                new NpgsqlParameter("merch_id", merchId),
-                new NpgsqlParameter("amount", amount),
-            },
-        };
-        
-        return amount;
+        await using DbCommand command = new NpgsqlCommand(sql, connection);
+        command.Parameters.Add(new NpgsqlParameter("user_id", userId));
+        command.Parameters.Add(new NpgsqlParameter("merch_id", merchId));
+        command.Parameters.Add(new NpgsqlParameter("amount", amount));
+
+        var result = await command.ExecuteScalarAsync(cancellationToken);
+    
+        return result is long merchItemId ? merchItemId : throw new Exception("Не удалось получить id купленного мерча.");
     }
 
-    public async Task<List<UserMerchItem>> GetMerchItemsBoughtByUser(long userId, CancellationToken cancellationToken)
+
+    public async Task<IEnumerable<UserMerchItem>> GetMerchItemsBoughtByUser(long userId, CancellationToken cancellationToken)
     {
         const string sql = """
                            SELECT user_id, merch_id, amount
