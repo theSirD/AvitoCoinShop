@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop", "src\AvitoCoinShop\AvitoCoinShop.csproj", "{A9ADF989-A95D-4181-AC6D-F4125446C508}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1F0B7DBF-23A1-4DEB-AE0A-76A08AF183C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C243BFA4-267C-440F-AD9F-22E8378C2215}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{91E39676-DC0A-4292-9908-36D089E01846}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8CA1591D-F263-443E-8F45-7EB261ABD1A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Application", "src\Application\AvitoCoinShop.Application\AvitoCoinShop.Application.csproj", "{37975A83-0E11-4B97-8FB6-27A0A3C6176C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Application.Abstractions", "src\Application\AvitoCoinShop.Application.Abstractions\AvitoCoinShop.Application.Abstractions.csproj", "{907DB4A9-E5B0-4EC8-AD99-B76AF679250D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Application.Contracts", "src\Application\AvitoCoinShop.Application.Contracts\AvitoCoinShop.Application.Contracts.csproj", "{A8791375-64F8-4945-9719-DE0FD725FAAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Application.Models", "src\Application\AvitoCoinShop.Application.Models\AvitoCoinShop.Application.Models.csproj", "{F3089541-5368-4431-B390-F4C252851281}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Infrastructure.Persistence", "src\Infrastructure\AvitoCoinShop.Infrastructure.Persistence\AvitoCoinShop.Infrastructure.Persistence.csproj", "{69EBD7FD-866C-4C0A-90C7-CFA11D70C39A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Presentation.Http", "src\Presentation\AvitoCoinShop.Presentation.Http\AvitoCoinShop.Presentation.Http.csproj", "{3E1867CF-9C0A-4401-9254-A69948BF31CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9ADF989-A95D-4181-AC6D-F4125446C508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9ADF989-A95D-4181-AC6D-F4125446C508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9ADF989-A95D-4181-AC6D-F4125446C508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9ADF989-A95D-4181-AC6D-F4125446C508}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37975A83-0E11-4B97-8FB6-27A0A3C6176C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37975A83-0E11-4B97-8FB6-27A0A3C6176C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37975A83-0E11-4B97-8FB6-27A0A3C6176C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37975A83-0E11-4B97-8FB6-27A0A3C6176C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{907DB4A9-E5B0-4EC8-AD99-B76AF679250D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{907DB4A9-E5B0-4EC8-AD99-B76AF679250D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{907DB4A9-E5B0-4EC8-AD99-B76AF679250D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{907DB4A9-E5B0-4EC8-AD99-B76AF679250D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8791375-64F8-4945-9719-DE0FD725FAAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8791375-64F8-4945-9719-DE0FD725FAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8791375-64F8-4945-9719-DE0FD725FAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8791375-64F8-4945-9719-DE0FD725FAAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3089541-5368-4431-B390-F4C252851281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3089541-5368-4431-B390-F4C252851281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3089541-5368-4431-B390-F4C252851281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3089541-5368-4431-B390-F4C252851281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69EBD7FD-866C-4C0A-90C7-CFA11D70C39A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69EBD7FD-866C-4C0A-90C7-CFA11D70C39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69EBD7FD-866C-4C0A-90C7-CFA11D70C39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69EBD7FD-866C-4C0A-90C7-CFA11D70C39A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E1867CF-9C0A-4401-9254-A69948BF31CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E1867CF-9C0A-4401-9254-A69948BF31CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E1867CF-9C0A-4401-9254-A69948BF31CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E1867CF-9C0A-4401-9254-A69948BF31CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C243BFA4-267C-440F-AD9F-22E8378C2215} = {1F0B7DBF-23A1-4DEB-AE0A-76A08AF183C9}
+		{91E39676-DC0A-4292-9908-36D089E01846} = {1F0B7DBF-23A1-4DEB-AE0A-76A08AF183C9}
+		{8CA1591D-F263-443E-8F45-7EB261ABD1A2} = {1F0B7DBF-23A1-4DEB-AE0A-76A08AF183C9}
+		{37975A83-0E11-4B97-8FB6-27A0A3C6176C} = {C243BFA4-267C-440F-AD9F-22E8378C2215}
+		{907DB4A9-E5B0-4EC8-AD99-B76AF679250D} = {C243BFA4-267C-440F-AD9F-22E8378C2215}
+		{A8791375-64F8-4945-9719-DE0FD725FAAC} = {C243BFA4-267C-440F-AD9F-22E8378C2215}
+		{F3089541-5368-4431-B390-F4C252851281} = {C243BFA4-267C-440F-AD9F-22E8378C2215}
+		{69EBD7FD-866C-4C0A-90C7-CFA11D70C39A} = {91E39676-DC0A-4292-9908-36D089E01846}
+		{3E1867CF-9C0A-4401-9254-A69948BF31CF} = {8CA1591D-F263-443E-8F45-7EB261ABD1A2}
+		{A9ADF989-A95D-4181-AC6D-F4125446C508} = {1F0B7DBF-23A1-4DEB-AE0A-76A08AF183C9}
+	EndGlobalSection
+EndGlobal
