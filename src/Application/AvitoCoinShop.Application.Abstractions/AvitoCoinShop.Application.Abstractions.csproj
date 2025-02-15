@@ -7,4 +7,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\AvitoCoinShop.Application.Models\AvitoCoinShop.Application.Models.csproj"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Persistence\Queries\" />
+    </ItemGroup>
+
 </Project>

@@ -7,4 +7,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\AvitoCoinShop.Application.Models\AvitoCoinShop.Application.Models.csproj"/>
+    </ItemGroup>
+
 </Project>
