@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: avitocoinshop_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "6432:6432"
+    networks:
+      - avito-coin-shop-network
+   
+    volumes:
+      - avitocoinshop_db_data:/var/lib/postgresql/data
+  
+  app:
+    container_name: avitocoinshop_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - avito-coin-shop-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+#      Infrastructure__Persistence__Postgres__Host: postgres
+#      Infrastructure__Persistence__Postgres__Name: postgres
+#      Infrastructure__Persistence__Postgres__User: postgres
+#      Infrastructure__Persistence__Postgres__Password: postgres
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=db;Port=6432;Username=postgres;Password=postgres;Database=postgres;
+
+
+networks:
+  avito-coin-shop-network:
+    driver: bridge
+volumes:
+  avitocoinshop_db_data:
