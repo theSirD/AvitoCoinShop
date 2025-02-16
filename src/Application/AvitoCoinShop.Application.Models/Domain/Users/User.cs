@@ -1,4 +1,4 @@
-namespace AvitoCoinShop.Application.Models.Users;
+namespace AvitoCoinShop.Application.Models.Domain.Users;
 
 public record User
 (

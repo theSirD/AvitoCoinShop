@@ -1,4 +1,4 @@
-namespace AvitoCoinShop.Application.Models.Merch;
+namespace AvitoCoinShop.Application.Models.Domain.Merch;
 
 public record MerchItem
 (
