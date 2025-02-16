@@ -13,11 +13,9 @@
     </ItemGroup>
     
     <ItemGroup>
-      <Folder Include="Extensions\" />
-    </ItemGroup>
-    
-    <ItemGroup>
       <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.2" />
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.5.0" />
     </ItemGroup>
 

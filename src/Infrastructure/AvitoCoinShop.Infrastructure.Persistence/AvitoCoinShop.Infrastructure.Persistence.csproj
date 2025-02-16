@@ -6,21 +6,27 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
+    
     <ItemGroup>
         <ProjectReference Include="..\..\Application\AvitoCoinShop.Application.Models\AvitoCoinShop.Application.Models.csproj"/>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\Application\AvitoCoinShop.Application.Abstractions\AvitoCoinShop.Application.Abstractions.csproj"/>
     </ItemGroup>
-    
-    <ItemGroup>
-      <Folder Include="Extensions\" />
-    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="FluentMigrator" Version="6.2.0" />
+      <PackageReference Include="FluentMigrator.Runner" Version="6.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore" Version="2.3.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.2" />
       <PackageReference Include="Npgsql" Version="9.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
 </Project>

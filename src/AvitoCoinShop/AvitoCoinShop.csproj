@@ -8,10 +8,19 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Application\AvitoCoinShop.Application\AvitoCoinShop.Application.csproj"/>
+        <ProjectReference Include="..\Infrastructure\AvitoCoinShop.Infrastructure.Persistence\AvitoCoinShop.Infrastructure.Persistence.csproj"/>
+        <ProjectReference Include="..\Presentation\AvitoCoinShop.Presentation.Http\AvitoCoinShop.Presentation.Http.csproj"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Content Include="./appsettings.json">
             <Link>./appsettings.json</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
-
 </Project>
