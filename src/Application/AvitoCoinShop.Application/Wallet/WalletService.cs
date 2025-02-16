@@ -28,6 +28,8 @@ public class WalletService : IWalletService
     public async Task<long> TransferCoinsAsync(long senderId, string receiverName, long amount, CancellationToken cancellationToken)
     {
         Models.Domain.Users.User? receiver = await _userService.GetByUsernameAsync(receiverName, cancellationToken);
+        if (receiver is null)
+            throw new Exception("No user with such a name");
         if (receiver.UserId is null)
             throw new Exception("User id is null");
         

@@ -18,9 +18,9 @@ public class TransactionHistoryRepository : ITransactionHistoryRepository
             CancellationToken cancellationToken)
         {
             const string sql = """
-            INSERT INTO transaction_history (sender_id, receiver_id, amount, created_at)
+            INSERT INTO transfer_history (sender_id, receiver_id, amount, created_at)
             VALUES (:senderId, :receiverId, :amount, :createdAt)
-            RETURNING transaction_id;
+            RETURNING id;
             """;
 
             await using NpgsqlConnection connection = await _dataSource.OpenConnectionAsync(cancellationToken);
@@ -39,13 +39,13 @@ public class TransactionHistoryRepository : ITransactionHistoryRepository
             return Convert.ToInt64(transactionId);
         }
 
-        public async Task<long> LogPurchaseAsync(long itemId, int price, int amount, DateTime date,
+        public async Task<long> LogPurchaseAsync(long userId, long itemId, int price, DateTime date,
             CancellationToken cancellationToken)
         {
             const string sql = """
-            INSERT INTO transaction_history (item_id, price, amount, created_at)
-            VALUES (:itemId, :price, :amount, :createdAt)
-            RETURNING transaction_id;
+            INSERT INTO purchase_history (user_id, item_id, price, created_at)
+            VALUES (:userId, :itemId, :price, :createdAt)
+            RETURNING id;
             """;
 
             await using NpgsqlConnection connection = await _dataSource.OpenConnectionAsync(cancellationToken);
@@ -53,9 +53,9 @@ public class TransactionHistoryRepository : ITransactionHistoryRepository
             {
                 Parameters =
                 {
+                    new NpgsqlParameter("userId", userId),
                     new NpgsqlParameter("itemId", itemId),
                     new NpgsqlParameter("price", price),
-                    new NpgsqlParameter("amount", amount),
                     new NpgsqlParameter("createdAt", date)
                 },
             };

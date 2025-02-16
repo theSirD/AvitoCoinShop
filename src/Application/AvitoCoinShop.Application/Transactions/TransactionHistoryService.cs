@@ -21,10 +21,10 @@ public class TransactionHistoryService : ITransactionHistoryService
         return entryId;
     }
 
-    public async Task<long> LogPurchaseAsync(long itemId, int price, int amount, DateTime date, CancellationToken cancellationToken)
+    public async Task<long> LogPurchaseAsync(long userId, long itemId, int price, DateTime date, CancellationToken cancellationToken)
     {
         long entryId =
-            await _transactionHistoryRepository.LogPurchaseAsync(itemId, price, amount, date, cancellationToken);
+            await _transactionHistoryRepository.LogPurchaseAsync(userId, itemId, price, date, cancellationToken);
         return entryId;
     }
 

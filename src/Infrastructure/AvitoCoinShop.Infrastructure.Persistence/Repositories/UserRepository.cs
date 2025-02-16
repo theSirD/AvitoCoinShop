@@ -17,7 +17,7 @@ public class UserRepository : IUserRepository
     public async Task<User?> GetByUsernameAsync(string username, CancellationToken cancellationToken)
     {
         const string sql = """
-                           SELECT user_id, name, balance, password_hash, created_at
+                           SELECT id, name, balance, password_hash, created_at
                            FROM users
                            WHERE name = :username;
                            """;
@@ -35,7 +35,7 @@ public class UserRepository : IUserRepository
         if (await reader.ReadAsync(cancellationToken))
         {
             return new User(
-                reader.GetInt64(reader.GetOrdinal("user_id")),
+                reader.GetInt64(reader.GetOrdinal("id")),
                 reader.GetString(reader.GetOrdinal("name")),
                 reader.GetInt32(reader.GetOrdinal("balance")),
                 reader.GetString(reader.GetOrdinal("password_hash")),
@@ -51,7 +51,7 @@ public class UserRepository : IUserRepository
         const string sql = """
                            INSERT INTO users (name, balance, password_hash, created_at)
                            VALUES (:name, :balance, :password_hash, :created_at)
-                           RETURNING user_id;
+                           RETURNING id;
                            """;
 
         await using NpgsqlConnection connection = await _dataSource.OpenConnectionAsync(cancellationToken);

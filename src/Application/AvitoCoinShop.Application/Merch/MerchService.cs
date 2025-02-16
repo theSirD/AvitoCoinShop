@@ -31,17 +31,22 @@ public class MerchService : IMerchService
         if (balance - price < 0)
             throw new Exception("Not enough coins");
 
+        bool userBoughtThisItemBefore =
+            await _merchRepository.CheckIfUserBoughtItemAsync(userId, merchId.Value, cancellationToken);
         using var transaction = new TransactionScope(
             TransactionScopeOption.Required,
             new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted },
             TransactionScopeAsyncFlowOption.Enabled);
         await _walletService.RemoveCoinsAsync(userId, price, cancellationToken);
-        long merchItemOfUserId = await _merchRepository.BuyMerchAsync(userId, merchId.Value, cancellationToken);
+        if (userBoughtThisItemBefore)
+            await _merchRepository.BuyMerchAsync(userId, merchId.Value, cancellationToken);
+        else
+            await _merchRepository.BuyThisItemForFirstTimeAsync(userId, merchId.Value, cancellationToken);
         
-        await _transactionHistoryService.LogPurchaseAsync(merchId.Value, price, 1, DateTime.UtcNow, cancellationToken);
+        await _transactionHistoryService.LogPurchaseAsync(userId, merchId.Value, price, DateTime.UtcNow, cancellationToken);
         transaction.Complete();
         
-        return merchItemOfUserId;
+        return merchId.Value;
     }
 
     public async Task<IEnumerable<UserMerchItem>> GetMerchItemsBoughtByUser(long userId, CancellationToken cancellationToken)

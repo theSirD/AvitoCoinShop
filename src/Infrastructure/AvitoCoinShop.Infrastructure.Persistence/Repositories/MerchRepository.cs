@@ -21,7 +21,7 @@ public class MerchRepository : IMerchRepository
         VALUES (:user_id, :merch_id, 1)
         ON CONFLICT (user_id, merch_id) 
         DO UPDATE SET amount = user_merch.amount + 1
-        RETURNING id;
+        RETURNING merch_id;
     ";
 
         await using NpgsqlConnection connection = await _dataSource.OpenConnectionAsync(cancellationToken);
@@ -103,4 +103,46 @@ public class MerchRepository : IMerchRepository
         return result is long merchId ? merchId : null;
     }
 
+    public async Task<bool> CheckIfUserBoughtItemAsync(long userId, long itemId, CancellationToken cancellationToken)
+    {
+        const string sql = """
+                           SELECT COUNT(*)
+                           FROM user_merch
+                           WHERE user_id = :user_id AND merch_id = :item_id;
+                           """;
+
+        await using var connection = await _dataSource.OpenConnectionAsync(cancellationToken);
+        await using DbCommand command = new NpgsqlCommand(sql, connection)
+        {
+            Parameters =
+            {
+                new NpgsqlParameter("user_id", userId),
+                new NpgsqlParameter("item_id", itemId),
+            },
+        };
+
+        object? result = await command.ExecuteScalarAsync(cancellationToken);
+        return Convert.ToInt32(result) > 0;
+    }
+
+    public async Task BuyThisItemForFirstTimeAsync(long userId, long itemId, CancellationToken cancellationToken)
+    {
+        const string sql = """
+                           INSERT INTO user_merch (user_id, merch_id, amount)
+                           VALUES (:user_id, :item_id, 1)
+                           ON CONFLICT (user_id, merch_id) DO NOTHING;
+                           """;
+
+        await using var connection = await _dataSource.OpenConnectionAsync(cancellationToken);
+        await using DbCommand command = new NpgsqlCommand(sql, connection)
+        {
+            Parameters =
+            {
+                new NpgsqlParameter("user_id", userId),
+                new NpgsqlParameter("item_id", itemId),
+            },
+        };
+
+        await command.ExecuteNonQueryAsync(cancellationToken);
+    }
 }
