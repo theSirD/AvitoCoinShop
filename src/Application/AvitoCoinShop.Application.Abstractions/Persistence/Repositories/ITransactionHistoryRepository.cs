@@ -1,4 +1,4 @@
-using AvitoCoinShop.Application.Models.TransactionHistory;
+using AvitoCoinShop.Application.Models.Domain.TransactionHistory;
 
 namespace AvitoCoinShop.Application.Abstractions.Persistence.Repositories;
 
