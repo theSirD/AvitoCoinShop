@@ -1,11 +1,12 @@
 using AvitoCoinShop.Application.Contracts;
 using AvitoCoinShop.Application.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvitoCoinShop.Presentation.Http.Controllers;
 
-[Route("api/sendCoin")]
 [ApiController]
+[Authorize]
 public class SendCoinController : ControllerBase
 {
     private readonly IWalletService _walletService;
@@ -15,7 +16,7 @@ public class SendCoinController : ControllerBase
         _walletService = walletService;
     }
     
-    [HttpPost]
+    [HttpPost("api/sendCoin")]
     public async Task<IActionResult> SendCoinsAsync([FromBody] SendCoinsRequest request, CancellationToken cancellationToken)
     {
         string userIdString = GetUserIdFromToken();
@@ -37,9 +38,9 @@ public class SendCoinController : ControllerBase
             
             return Ok(transactionId);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return StatusCode(500);
+            return StatusCode(500, ex.Message);
         }
     }
 
