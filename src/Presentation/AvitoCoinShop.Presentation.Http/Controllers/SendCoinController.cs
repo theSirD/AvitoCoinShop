@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AvitoCoinShop.Presentation.Http.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/sendCoin")]
 [ApiController]
 public class SendCoinController : ControllerBase
 {

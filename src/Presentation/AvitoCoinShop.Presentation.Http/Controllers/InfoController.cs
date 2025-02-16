@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AvitoCoinShop.Presentation.Http.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/info")]
 [ApiController]
 public class InfoController : ControllerBase
 {

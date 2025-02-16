@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AvitoCoinShop.Presentation.Http.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
 public class AuthController : ControllerBase
 {
@@ -15,7 +14,7 @@ public class AuthController : ControllerBase
         _authService = authService;
     }
     
-    [HttpPost]
+    [HttpPost("api/auth")]
     public async Task<IActionResult> AuthAsync([FromBody] AuthRequest authRequest, CancellationToken cancellationToken)
     {
         if (authRequest is null || string.IsNullOrWhiteSpace(authRequest.Username) || string.IsNullOrWhiteSpace(authRequest.Password))
