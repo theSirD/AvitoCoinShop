@@ -14,13 +14,13 @@ public class MerchRepository : IMerchRepository
         _dataSource = dataSource;
     }
     
-    public async Task<long> BuyMerchAsync(long userId, long merchId, long amount, CancellationToken cancellationToken)
+    public async Task<long> BuyMerchAsync(long userId, long merchId, CancellationToken cancellationToken)
     {
         const string sql = @"
         INSERT INTO user_merch (user_id, merch_id, amount)
-        VALUES (:user_id, :merch_id, :amount)
+        VALUES (:user_id, :merch_id, 1)
         ON CONFLICT (user_id, merch_id) 
-        DO UPDATE SET amount = user_merch.amount + :amount
+        DO UPDATE SET amount = user_merch.amount + 1
         RETURNING id;
     ";
 
@@ -29,7 +29,6 @@ public class MerchRepository : IMerchRepository
         await using DbCommand command = new NpgsqlCommand(sql, connection);
         command.Parameters.Add(new NpgsqlParameter("user_id", userId));
         command.Parameters.Add(new NpgsqlParameter("merch_id", merchId));
-        command.Parameters.Add(new NpgsqlParameter("amount", amount));
 
         var result = await command.ExecuteScalarAsync(cancellationToken);
     
@@ -69,7 +68,7 @@ public class MerchRepository : IMerchRepository
     }
 
 
-    public async Task<int> GetMerchPriceAsync(long merchItemId, int amount, CancellationToken cancellationToken)
+    public async Task<int> GetMerchPriceAsync(long merchItemId, CancellationToken cancellationToken)
     {
         const string sql = "SELECT price FROM merch_items WHERE id = :merch_id";
 
