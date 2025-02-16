@@ -22,6 +22,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Presentation.Http", "src\Presentation\AvitoCoinShop.Presentation.Http\AvitoCoinShop.Presentation.Http.csproj", "{3E1867CF-9C0A-4401-9254-A69948BF31CF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{13066AC2-A546-4591-A54E-C3072E897C98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Application.Application.UnitTests", "tests\AvitoCoinShop.Application.Application.UnitTests\AvitoCoinShop.Application.Application.UnitTests.csproj", "{CBA9052C-F079-42FD-9256-7E8B935F4BAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.Presentation.Http.UnitTests", "tests\AvitoCoinShop.Presentation.Http.UnitTests\AvitoCoinShop.Presentation.Http.UnitTests.csproj", "{0BC40163-B38B-489F-89D9-5E485E196761}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvitoCoinShop.IntegrationTests", "tests\AvitoCoinShop.IntegrationTests\AvitoCoinShop.IntegrationTests.csproj", "{40E45B4D-BB30-4A88-8B90-B1219054D6FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +64,18 @@ Global
 		{3E1867CF-9C0A-4401-9254-A69948BF31CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E1867CF-9C0A-4401-9254-A69948BF31CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E1867CF-9C0A-4401-9254-A69948BF31CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBA9052C-F079-42FD-9256-7E8B935F4BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBA9052C-F079-42FD-9256-7E8B935F4BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBA9052C-F079-42FD-9256-7E8B935F4BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBA9052C-F079-42FD-9256-7E8B935F4BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BC40163-B38B-489F-89D9-5E485E196761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BC40163-B38B-489F-89D9-5E485E196761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BC40163-B38B-489F-89D9-5E485E196761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BC40163-B38B-489F-89D9-5E485E196761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40E45B4D-BB30-4A88-8B90-B1219054D6FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40E45B4D-BB30-4A88-8B90-B1219054D6FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40E45B4D-BB30-4A88-8B90-B1219054D6FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40E45B4D-BB30-4A88-8B90-B1219054D6FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C243BFA4-267C-440F-AD9F-22E8378C2215} = {1F0B7DBF-23A1-4DEB-AE0A-76A08AF183C9}
@@ -68,5 +88,8 @@ Global
 		{69EBD7FD-866C-4C0A-90C7-CFA11D70C39A} = {91E39676-DC0A-4292-9908-36D089E01846}
 		{3E1867CF-9C0A-4401-9254-A69948BF31CF} = {8CA1591D-F263-443E-8F45-7EB261ABD1A2}
 		{A9ADF989-A95D-4181-AC6D-F4125446C508} = {1F0B7DBF-23A1-4DEB-AE0A-76A08AF183C9}
+		{CBA9052C-F079-42FD-9256-7E8B935F4BAF} = {13066AC2-A546-4591-A54E-C3072E897C98}
+		{0BC40163-B38B-489F-89D9-5E485E196761} = {13066AC2-A546-4591-A54E-C3072E897C98}
+		{40E45B4D-BB30-4A88-8B90-B1219054D6FD} = {13066AC2-A546-4591-A54E-C3072E897C98}
 	EndGlobalSection
 EndGlobal
