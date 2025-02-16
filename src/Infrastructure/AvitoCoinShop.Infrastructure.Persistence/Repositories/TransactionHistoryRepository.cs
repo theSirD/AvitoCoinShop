@@ -1,6 +1,6 @@
 using System.Data.Common;
 using AvitoCoinShop.Application.Abstractions.Persistence.Repositories;
-using AvitoCoinShop.Application.Models.TransactionHistory;
+using AvitoCoinShop.Application.Models.Domain.TransactionHistory;
 using Npgsql;
 
 namespace AvitoCoinShop.Infrastructure.Persistence.Repositories;

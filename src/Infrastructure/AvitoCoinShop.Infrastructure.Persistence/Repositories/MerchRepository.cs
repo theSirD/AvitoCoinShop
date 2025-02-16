@@ -1,6 +1,6 @@
 using System.Data.Common;
 using AvitoCoinShop.Application.Abstractions.Persistence.Repositories;
-using AvitoCoinShop.Application.Models.Merch;
+using AvitoCoinShop.Application.Models.Domain.Merch;
 using Npgsql;
 
 namespace AvitoCoinShop.Infrastructure.Persistence.Repositories;
@@ -85,4 +85,22 @@ public class MerchRepository : IMerchRepository
         object? price = await command.ExecuteScalarAsync(cancellationToken);
         return Convert.ToInt32(price);
     }
+
+    public async Task<long?> GetMerchIdByNameAsync(string merchName, CancellationToken cancellationToken)
+    {
+        const string sql = "SELECT id FROM merch_items WHERE name = :merch_name";
+
+        await using var connection = await _dataSource.OpenConnectionAsync(cancellationToken);
+        await using DbCommand command = new NpgsqlCommand(sql, connection)
+        {
+            Parameters =
+            {
+                new NpgsqlParameter("merch_name", merchName),
+            },
+        };
+
+        object? result = await command.ExecuteScalarAsync(cancellationToken);
+        return result is long merchId ? merchId : null;
+    }
+
 }

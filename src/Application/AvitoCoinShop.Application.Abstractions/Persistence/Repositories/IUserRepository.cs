@@ -1,4 +1,4 @@
-using AvitoCoinShop.Application.Models.Users;
+using AvitoCoinShop.Application.Models.Domain.Users;
 
 namespace AvitoCoinShop.Application.Abstractions.Persistence.Repositories;
 

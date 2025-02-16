@@ -10,10 +10,13 @@ public class WalletService : IWalletService
     
     private readonly ITransactionHistoryService _transactionHistoryService;
 
-    public WalletService(IWalletRepository walletRepository, ITransactionHistoryService transactionHistoryService)
+    private readonly IUserService _userService;
+
+    public WalletService(IWalletRepository walletRepository, ITransactionHistoryService transactionHistoryService, IUserService userService)
     {
         _walletRepository = walletRepository;
         _transactionHistoryService = transactionHistoryService;
+        _userService = userService;
     }
 
     public async Task<long> GetBalanceAsync(long userId, CancellationToken cancellationToken)
@@ -22,8 +25,13 @@ public class WalletService : IWalletService
         return balance;
     }
 
-    public async Task<long> TransferCoinsAsync(long senderId, long receiverId, long amount, CancellationToken cancellationToken)
+    public async Task<long> TransferCoinsAsync(long senderId, string receiverName, long amount, CancellationToken cancellationToken)
     {
+        Models.Domain.Users.User? receiver = await _userService.GetByUsernameAsync(receiverName, cancellationToken);
+        if (receiver.UserId is null)
+            throw new Exception("User id is null");
+        
+        long receiverId = receiver.UserId.Value;
         using var transaction = new TransactionScope(
             TransactionScopeOption.Required,
             new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted },

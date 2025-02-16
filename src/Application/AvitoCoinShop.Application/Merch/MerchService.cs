@@ -1,7 +1,7 @@
 using System.Transactions;
 using AvitoCoinShop.Application.Abstractions.Persistence.Repositories;
 using AvitoCoinShop.Application.Contracts;
-using AvitoCoinShop.Application.Models.Merch;
+using AvitoCoinShop.Application.Models.Domain.Merch;
 
 namespace AvitoCoinShop.Application.Merch;
 
@@ -20,10 +20,14 @@ public class MerchService : IMerchService
         _walletService = walletService;
     }
 
-    public async Task<long> BuyMerchAsync(long userId, long merchId, CancellationToken cancellationToken)
+    public async Task<long> BuyMerchAsync(long userId, string merchName, CancellationToken cancellationToken)
     {
+        long? merchId = await _merchRepository.GetMerchIdByNameAsync(merchName, cancellationToken);
+        if (merchId is null)
+            throw new Exception("Merch with name given does not exist");
+        
         long balance = await _walletService.GetBalanceAsync(userId, cancellationToken);
-        int price = await GetMerchPriceAsync(merchId, cancellationToken);
+        int price = await GetMerchPriceAsync(merchId.Value, cancellationToken);
         if (balance - price < 0)
             throw new Exception("Not enough coins");
 
@@ -32,9 +36,9 @@ public class MerchService : IMerchService
             new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted },
             TransactionScopeAsyncFlowOption.Enabled);
         await _walletService.RemoveCoinsAsync(userId, price, cancellationToken);
-        long merchItemOfUserId = await _merchRepository.BuyMerchAsync(userId, merchId, cancellationToken);
+        long merchItemOfUserId = await _merchRepository.BuyMerchAsync(userId, merchId.Value, cancellationToken);
         
-        await _transactionHistoryService.LogPurchaseAsync(merchId, price, 1, DateTime.UtcNow, cancellationToken);
+        await _transactionHistoryService.LogPurchaseAsync(merchId.Value, price, 1, DateTime.UtcNow, cancellationToken);
         transaction.Complete();
         
         return merchItemOfUserId;
@@ -50,5 +54,10 @@ public class MerchService : IMerchService
     {
         int price = await _merchRepository.GetMerchPriceAsync(merchItemId, cancellationToken);
         return price;
+    }
+
+    public async Task<long> GetMerchIdByNameAsync(string merchName, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 }
