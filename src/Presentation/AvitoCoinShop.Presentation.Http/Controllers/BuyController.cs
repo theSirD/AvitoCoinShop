@@ -1,10 +1,12 @@
 using AvitoCoinShop.Application.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvitoCoinShop.Presentation.Http.Controllers;
 
 [Route("api/buy")]
 [ApiController]
+[Authorize]
 public class BuyController : ControllerBase
 {
     private readonly IMerchService _merchService;
@@ -15,7 +17,7 @@ public class BuyController : ControllerBase
     }
     
     [HttpGet("{item}")]
-    public async Task<IActionResult> BuyItemAsync(string itemName, CancellationToken cancellationToken)
+    public async Task<IActionResult> BuyItemAsync(string item, CancellationToken cancellationToken)
     {
         var userIdString = GetUserIdFromToken();
 
@@ -24,7 +26,7 @@ public class BuyController : ControllerBase
             return Unauthorized();
         }
 
-        if (string.IsNullOrEmpty(itemName))
+        if (string.IsNullOrEmpty(item))
         {
             return BadRequest(new { errors = "Invalid request: item name required" });
         }
@@ -32,19 +34,20 @@ public class BuyController : ControllerBase
         try
         {
             long userId = long.Parse(userIdString);
-            var userMerchItemId = await _merchService.BuyMerchAsync(userId, itemName, cancellationToken);
+            var merchId = await _merchService.BuyMerchAsync(userId, item, cancellationToken);
 
-            return Ok(userMerchItemId);
+            return Ok(merchId);
             
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return StatusCode(500);
+            return StatusCode(500, ex.Message);
         }
     }
 
-    private string GetUserIdFromToken()
+    private string? GetUserIdFromToken()
     {
+        var user = User;
         var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
         return userId;
     }
