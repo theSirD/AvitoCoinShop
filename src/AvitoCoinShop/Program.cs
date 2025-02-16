@@ -26,7 +26,7 @@ public class Program
 
         builder.Services.AddControllers().AddApplicationPart(typeof(AuthController).Assembly);
         
-        // TODO. Replace your_super_secret_key_which_should_be_long_enough
+        // TODO. Hide your_super_secret_key_which_should_be_long_enough
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {

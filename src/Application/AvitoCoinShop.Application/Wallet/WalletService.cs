@@ -50,7 +50,6 @@ public class WalletService : IWalletService
     public async Task<long> RemoveCoinsAsync(long userId, long amount, CancellationToken cancellationToken)
     {
         long balance = await GetBalanceAsync(userId, cancellationToken);
-        // TODO. Replace with custom exceptions
         if (balance - amount < 0)
             throw new Exception("Not enough coins");
         

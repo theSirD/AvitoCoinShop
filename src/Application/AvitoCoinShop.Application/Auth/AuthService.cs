@@ -57,8 +57,7 @@ public class AuthService : IAuthService
 
             return new JwtSecurityTokenHandler().WriteToken(newUserToken);
         }
-
-        // TODO. Add custom exception
+        
         if (!BCrypt.Net.BCrypt.Verify(password, existingUser.PasswordHash))
             throw new Exception("Wrong password");
         
