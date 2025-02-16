@@ -16,9 +16,5 @@
         <ProjectReference Include="..\..\Application\AvitoCoinShop.Application.Contracts\AvitoCoinShop.Application.Contracts.csproj"/>
         <ProjectReference Include="..\..\Application\AvitoCoinShop.Application.Models\AvitoCoinShop.Application.Models.csproj"/>
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Extensions\" />
-    </ItemGroup>
     
 </Project>
