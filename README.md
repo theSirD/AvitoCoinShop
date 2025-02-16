@@ -6,10 +6,10 @@
 ## Особенности проекта
 ### Гексагональная архитектура. Слои:
   1. Presentation.Http - контроллеры;
-  2.1. Application.Contracts - интерфейсы сервисов, используются в 1.
-  2.2. Application - реализации сервисов;
-  2.3. Application.Models - модели;
-  2.4. Application.Abstractions - интерфейсы репозиториев, используются в 2.1;
-  3. Infrastructure.Persistence - реализации репозиториев.
+  2. Application.Contracts - интерфейсы сервисов, используются в 1.
+  3. Application - реализации сервисов;
+  4. Application.Models - модели;
+  5. Application.Abstractions - интерфейсы репозиториев, используются в 3;
+  6. Infrastructure.Persistence - реализации репозиториев.
 ### Миграции
 Для создания таблиц в БД и заполнения таблицы мерча используются миграции.
