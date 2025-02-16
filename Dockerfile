@@ -28,4 +28,4 @@ WORKDIR /app
 
 COPY --from=publish /app/publish .
 
-ENTRYPOINT ["dotnet", "AvitoCoinShop.dll"]
+CMD ["dotnet", "AvitoCoinShop.dll"]
