@@ -1,10 +1,11 @@
 using AvitoCoinShop.Application.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvitoCoinShop.Presentation.Http.Controllers;
 
-[Route("api/info")]
 [ApiController]
+[Authorize]
 public class InfoController : ControllerBase
 {
     private readonly IWalletService _walletService;
@@ -21,7 +22,7 @@ public class InfoController : ControllerBase
         _transactionHistoryService = transactionHistoryService;
     }
     
-    [HttpGet]
+    [HttpGet("api/info")]
     public async Task<IActionResult> GetInfoAsync(CancellationToken cancellationToken)
     {
         var userIdString = GetUserIdFromToken();
@@ -47,13 +48,13 @@ public class InfoController : ControllerBase
 
             return Ok(info);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return StatusCode(500);
+            return StatusCode(500, ex.Message);
         }
     }
     
-    private string GetUserIdFromToken()
+    private string? GetUserIdFromToken()
     {
         var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
         return userId;

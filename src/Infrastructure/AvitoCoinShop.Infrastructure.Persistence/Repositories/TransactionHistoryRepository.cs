@@ -138,10 +138,10 @@ public class TransactionHistoryRepository : ITransactionHistoryRepository
     public async Task<IEnumerable<PurchaseHistoryItem>> GetPurchaseHistoryAsync(long userId, CancellationToken cancellationToken)
     {
         const string sql = """
-                           SELECT ph.id, ph.item_id, ph.price, ph.amount, ph.created_at
-                           FROM purchase_history ph
-                           WHERE ph.user_id = :user_id
-                           ORDER BY ph.created_at DESC;
+                           SELECT id, item_id, price, created_at
+                           FROM purchase_history
+                           WHERE user_id = :user_id
+                           ORDER BY created_at DESC;
                            """;
 
         await using NpgsqlConnection connection = await _dataSource.OpenConnectionAsync(cancellationToken);
@@ -162,7 +162,6 @@ public class TransactionHistoryRepository : ITransactionHistoryRepository
                 reader.GetInt64(reader.GetOrdinal("id")),
                 reader.GetInt64(reader.GetOrdinal("item_id")),
                 reader.GetInt32(reader.GetOrdinal("price")),
-                reader.GetInt32(reader.GetOrdinal("amount")),
                 reader.GetDateTime(reader.GetOrdinal("created_at"))
             ));
         }
